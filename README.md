@@ -31,3 +31,10 @@ pnpm run test:unit
 ```sh
 pnpm run lint
 ```
+
+## Todo
+- [ ] API (express)
+  - [ ] JWT
+  - [ ] SQLite
+- [ ] Website design
+- [ ] ~~Pen test~~
