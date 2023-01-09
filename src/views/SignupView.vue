@@ -1,7 +1,17 @@
 <script setup>
+import axios from "axios";
 import NavBar from "../components/NavBar.vue";
+import { ref } from "vue";
 
-const submitRegistration = () => {};
+const username = ref("");
+const password = ref("");
+
+const submitRegistration = async () => {
+  await axios.post("http://localhost:3001/api/auth/signup", {
+    username: username.value,
+    password: password.value,
+  });
+};
 </script>
 
 <template>

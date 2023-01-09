@@ -9,6 +9,7 @@ import { RouterLink } from "vue-router";
       <RouterLink class="p-5" to="/">Home</RouterLink>
       <RouterLink class="p-5" to="/about">About</RouterLink>
       <RouterLink class="p-5" to="/login">Login</RouterLink>
+      <RouterLink class="p-5" to="/signup">Sign Up</RouterLink>
     </nav>
   </div>
 </template>

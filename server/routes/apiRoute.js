@@ -3,7 +3,7 @@ import {
   postComment,
   getComment,
   deleteComment,
-} from "../controllers/commentController";
+} from "../controllers/commentController.js";
 
 const router = express.Router();
 
