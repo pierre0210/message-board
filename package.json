@@ -2,7 +2,9 @@
   "name": "message-board",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
+    "server": "node ./server/app.js",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
