@@ -41,7 +41,6 @@ export const signIn = async (req, res) => {
  */
 export const signUp = async (req, res) => {
   try {
-    console.log("sign up");
     const database = await db();
     const User = database.models.User;
     await User.create({

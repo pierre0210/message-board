@@ -9,13 +9,18 @@ const password = ref("");
 const message = ref("");
 
 const submitLogin = async () => {
-  const response = await axios.post("http://localhost:3001/api/auth/signin", {
-    username: username.value,
-    password: password.value,
-  });
-
-  message.value = `${response.status} ${response.data.message}`;
-  alert(message.value);
+  try {
+    const response = await axios.post("http://localhost:3001/api/auth/signin", {
+      username: username.value,
+      password: password.value,
+    });
+    message.value = `${response.status} - ${response.data.message}`;
+    if (response.status === 200) {
+      localStorage.setItem("accessToken", response.data.accessToken);
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };
 </script>
 

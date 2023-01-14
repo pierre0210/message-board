@@ -14,8 +14,7 @@ const submitRegistration = async () => {
     password: password.value,
   });
 
-  message.value = `${response.status} ${response.data.message}`;
-  console.log(response);
+  message.value = `${response.status} - ${response.data.message}`;
 };
 </script>
 
@@ -32,6 +31,7 @@ const submitRegistration = async () => {
     <input
       type="password"
       v-model="password"
+      autocomplete="on"
       class="border-black border-2 rounded my-1"
     />
     <button type="submit" class="ml-1 px-1 rounded border-black border-2">
