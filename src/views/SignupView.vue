@@ -6,11 +6,16 @@ import { ref } from "vue";
 const username = ref("");
 const password = ref("");
 
+const message = ref("");
+
 const submitRegistration = async () => {
-  await axios.post("http://localhost:3001/api/auth/signup", {
+  const response = await axios.post("http://localhost:3001/api/auth/signup", {
     username: username.value,
     password: password.value,
   });
+
+  message.value = `${response.status} ${response.data.message}`;
+  console.log(response);
 };
 </script>
 
@@ -32,5 +37,6 @@ const submitRegistration = async () => {
     <button type="submit" class="ml-1 px-1 rounded border-black border-2">
       Sign up
     </button>
+    <p class="ml-1">{{ message }}</p>
   </form>
 </template>

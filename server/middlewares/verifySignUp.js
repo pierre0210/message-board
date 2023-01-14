@@ -12,8 +12,7 @@ export default async (req, res, next) => {
     const userFound = await User.findOne({
       where: { user_name: req.body.username },
     });
-    const isExisted = userFound ? true : false;
-    if (isExisted) {
+    if (userFound) {
       res.status(400).send({ message: "User name is already in use." });
       return;
     }
