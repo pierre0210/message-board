@@ -7,8 +7,8 @@ import {
 
 const router = express.Router();
 
-router.post("/comment", postComment);
-router.get("/comment/:id", getComment);
-router.delete("/comment/:id", deleteComment);
+router.post("/", postComment);
+router.get("/:id", getComment);
+router.delete("/:id", deleteComment);
 
 export default router;
