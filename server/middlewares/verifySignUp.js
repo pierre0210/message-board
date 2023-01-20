@@ -6,6 +6,10 @@ import db from "../models/index.js";
  * @param {import("express").NextFunction} next
  */
 export default async (req, res, next) => {
+  if (req.body.username === "" || req.body.password === "") {
+    res.status(400).send({ message: "User name and password can't be empty." });
+    return;
+  }
   try {
     const database = await db();
     const User = database.models.User;

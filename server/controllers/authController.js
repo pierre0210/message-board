@@ -22,7 +22,6 @@ export const signIn = async (req, res) => {
     } else {
       const isMatch = bcrypt.compareSync(req.body.password, userFound.password);
       if (isMatch) {
-        // eslint-disable-next-line prettier/prettier
         const token = jwt.sign({ username: req.body.username }, process.env.JWTSECRET, { expiresIn: "12h" });
         res.send({ message: "Sign in successfully", accessToken: token });
       } else {
