@@ -14,19 +14,17 @@ const submitLogin = async () => {
       username: username.value,
       password: password.value,
     });
-    message.value = `${response.status} - ${response.data.message}`;
-    if (response.status === 200) {
-      localStorage.setItem("accessToken", response.data.accessToken);
-    }
+    localStorage.setItem("accessToken", response.data.accessToken);
+    window.location.href = "/";
   } catch (err) {
-    console.log(err);
+    message.value = `${err.response.data.message}`;
   }
 };
 </script>
 
 <template>
   <NavBar />
-  <form @submit="submitLogin" class="p-2">
+  <form @submit.prevent="submitLogin" class="p-2">
     <label>User name: </label>
     <input
       type="text"
