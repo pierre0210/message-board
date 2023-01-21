@@ -9,18 +9,26 @@ const password = ref("");
 const message = ref("");
 
 const submitRegistration = async () => {
-  const response = await axios.post("http://localhost:3001/api/auth/signup", {
-    username: username.value,
-    password: password.value,
-  });
+  if (username.value === "" || password.value === "") {
+    message.value = "Username and password can't be empty.";
+    return;
+  }
+  try {
+    await axios.post("http://localhost:3001/api/auth/signup", {
+      username: username.value,
+      password: password.value,
+    });
 
-  message.value = `${response.status} - ${response.data.message}`;
+    window.location.href = "/login";
+  } catch (err) {
+    message.value = `${err.response.data.message}`;
+  }
 };
 </script>
 
 <template>
   <NavBar />
-  <form @submit="submitRegistration" class="p-2">
+  <form @submit.prevent="submitRegistration" class="p-2">
     <label>User name: </label>
     <input
       type="text"
@@ -37,6 +45,6 @@ const submitRegistration = async () => {
     <button type="submit" class="ml-1 px-1 rounded border-black border-2">
       Sign up
     </button>
-    <p class="ml-1">{{ message }}</p>
+    <p>{{ message }}</p>
   </form>
 </template>
