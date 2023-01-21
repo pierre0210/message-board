@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 
 /**
- * comment modal
+ * comment model
  * @param {import("sequelize").Sequelize} sequelize
  */
 export default (sequelize) => {
