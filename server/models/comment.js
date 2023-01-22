@@ -5,7 +5,7 @@ import { DataTypes } from "sequelize";
  * @param {import("sequelize").Sequelize} sequelize
  */
 export default (sequelize) => {
-  return sequelize.define("comment", {
+  return sequelize.define("Comment", {
     comment_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
