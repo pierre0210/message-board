@@ -1,4 +1,5 @@
 import db from "../models/index.js";
+import { Op } from "sequelize";
 
 /**
  * Post comment function
@@ -57,4 +58,37 @@ export const getComment = async (req, res) => {
     res.status(500).send({ message: err });
   }
 };
+
+/**
+ * Get comments in range function
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ */
+export const getCommentsInRange = async (req, res) => {
+  try {
+    const range = req.body.range;
+    if ((typeof range[0] != "number" || typeof range[1] != "number") && range[0] < range[1]) {
+      res.status(400).send({ message: "Wrong index range." });
+      return;
+    }
+    const database = await db();
+    const Comment = database.models.Comment;
+    const resultComments = await Comment.findAll({
+      where: {
+        comment_id: {
+          [Op.between]: range,
+        },
+      },
+      order: [["comment_id", "DESC"]],
+    });
+    res.send({
+      message: "Comments found.",
+      data: resultComments.map((comment) => comment.toJSON()),
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ message: err });
+  }
+};
+
 export const deleteComment = () => {};
