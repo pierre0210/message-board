@@ -1,5 +1,5 @@
 import db from "../models/index.js";
-import { Op } from "sequelize";
+//import { Op } from "sequelize";
 
 /**
  * Post comment function
@@ -74,11 +74,8 @@ export const getCommentsInRange = async (req, res) => {
     const database = await db();
     const Comment = database.models.Comment;
     const resultComments = await Comment.findAll({
-      where: {
-        comment_id: {
-          [Op.between]: range,
-        },
-      },
+      offset: range[0] - 1,
+      limit: range[1] - range[0],
       order: [["comment_id", "DESC"]],
     });
     res.send({
