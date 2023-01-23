@@ -39,10 +39,6 @@ export const postComment = async (req, res) => {
 export const getComment = async (req, res) => {
   try {
     const commentId = req.params.id;
-    if (!commentId) {
-      res.status(404).send({ message: "Comment id is empty." });
-      return;
-    }
     const database = await db();
     const Comment = database.models.Comment;
     const resultComment = await Comment.findOne({
@@ -67,8 +63,12 @@ export const getComment = async (req, res) => {
 export const getCommentsInRange = async (req, res) => {
   try {
     const range = req.body.range;
-    if ((typeof range[0] != "number" || typeof range[1] != "number") && range[0] < range[1]) {
-      res.status(400).send({ message: "Wrong index range." });
+    if (!range) {
+      res.status(400).send({ message: "Range not provided" });
+      return;
+    }
+    if (typeof range[0] != "number" || typeof range[1] != "number") {
+      res.status(400).send({ message: "Wrong index data type" });
       return;
     }
     const database = await db();
@@ -91,4 +91,32 @@ export const getCommentsInRange = async (req, res) => {
   }
 };
 
-export const deleteComment = () => {};
+/**
+ * Delete comment function
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ */
+export const deleteComment = async (req, res) => {
+  try {
+    const username = req.userData.username;
+    const commentId = req.params.id;
+    const database = await db();
+    const Comment = database.models.Comment;
+    const targetComment = await Comment.findOne({
+      where: { comment_id: commentId },
+    });
+    if (!targetComment) {
+      res.status(404).send({ message: "Comment not found." });
+    } else if (targetComment.user_name != username) {
+      res.status(403).send({ message: "Forbidden." });
+    } else {
+      await Comment.destroy({
+        where: { comment_id: commentId },
+      });
+      res.send({ message: "Comment removed." });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ message: err });
+  }
+};
