@@ -24,23 +24,28 @@ const submitLogin = async () => {
 
 <template>
   <NavBar />
-  <form @submit.prevent="submitLogin" class="p-2">
-    <label>User name: </label>
-    <input
-      type="text"
-      v-model="username"
-      class="border-black border-2 rounded my-1"
-    />
-    <label class="ml-1">Password: </label>
-    <input
-      type="password"
-      v-model="password"
-      autocomplete="on"
-      class="border-black border-2 rounded my-1"
-    />
-    <button type="submit" class="ml-1 px-1 rounded border-black border-2">
-      Login
-    </button>
+  <form @submit.prevent="submitLogin" class="flex justify-center items-center">
+    <div class="block">
+      <label>User name </label><br />
+      <input
+        type="text"
+        v-model="username"
+        class="border-black border-2 rounded my-1"
+      />
+      <br />
+      <label>Password </label><br />
+      <input
+        type="password"
+        v-model="password"
+        autocomplete="on"
+        class="border-black border-2 rounded my-1"
+      />
+      <br />
+      <br />
+      <button type="submit" class="px-1 rounded border-black border-2">
+        Login
+      </button>
+    </div>
   </form>
   <p class="ml-1">{{ message }}</p>
 </template>
