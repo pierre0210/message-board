@@ -62,12 +62,12 @@ export const getComment = async (req, res) => {
  */
 export const getCommentsInRange = async (req, res) => {
   try {
-    const range = req.body.range;
+    const range = [parseInt(req.query.start), parseInt(req.query.end)];
     if (!range) {
       res.status(400).send({ message: "Range not provided" });
       return;
     }
-    if (typeof range[0] != "number" || typeof range[1] != "number") {
+    if (isNaN(range[0]) || isNaN(range[1])) {
       res.status(400).send({ message: "Wrong index data type" });
       return;
     }
