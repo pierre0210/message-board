@@ -6,12 +6,13 @@ import NavBar from "../components/NavBar.vue";
 
 const state = ref(false);
 const comments = ref([]);
+const userName = ref("");
 
 onBeforeMount(async () => {
   const token = localStorage.getItem("accessToken");
   if (token) {
     try {
-      const response = await axios.get("http://localhost:3001/api/comment/", {
+      const response = await axios.get("/api/comment/", {
         params: {
           start: 1,
           end: 10,
@@ -22,6 +23,7 @@ onBeforeMount(async () => {
       });
       state.value = true;
       comments.value = response.data.data;
+      userName.value = response.data.userData.username;
     } catch (err) {
       localStorage.removeItem("accessToken");
       console.log(err.response.data);
@@ -37,9 +39,11 @@ onBeforeMount(async () => {
     <div v-if="state">
       <div v-for="comment in comments" :key="comment" class="p-5">
         <CommentContainer
+          :commentId="comment.comment_id"
           :content="comment.content"
           :author="comment.user_name"
           :timestamp="comment.createdAt"
+          :authuser="userName"
         />
       </div>
     </div>

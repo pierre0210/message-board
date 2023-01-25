@@ -10,7 +10,7 @@ const message = ref("");
 
 const submitLogin = async () => {
   try {
-    const response = await axios.post("http://localhost:3001/api/auth/signin", {
+    const response = await axios.post("/api/auth/signin", {
       username: username.value,
       password: password.value,
     });

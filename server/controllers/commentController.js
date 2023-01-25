@@ -38,6 +38,7 @@ export const postComment = async (req, res) => {
  */
 export const getComment = async (req, res) => {
   try {
+    const userData = req.userData;
     const commentId = req.params.id;
     const database = await db();
     const Comment = database.models.Comment;
@@ -48,7 +49,11 @@ export const getComment = async (req, res) => {
       res.status(404).send({ message: "Comment not found." });
       return;
     }
-    res.send({ message: "Comment found.", data: resultComment.toJSON() });
+    res.send({
+      message: "Comment found.",
+      data: resultComment.toJSON(),
+      userData: userData,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).send({ message: err });
@@ -63,6 +68,7 @@ export const getComment = async (req, res) => {
 export const getCommentsInRange = async (req, res) => {
   try {
     const range = [parseInt(req.query.start), parseInt(req.query.end)];
+    const userData = req.userData;
     if (!range) {
       res.status(400).send({ message: "Range not provided" });
       return;
@@ -81,6 +87,7 @@ export const getCommentsInRange = async (req, res) => {
     res.send({
       message: "Comments found.",
       data: resultComments.map((comment) => comment.toJSON()),
+      userData: userData,
     });
   } catch (err) {
     console.log(err);
