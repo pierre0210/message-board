@@ -23,6 +23,7 @@ const logout = () => {
     <nav class="my-auto">
       <RouterLink class="p-5" to="/">Home</RouterLink>
       <RouterLink class="p-5" to="/about">About</RouterLink>
+      <RouterLink v-if="state" class="p-5" to="/post">Post</RouterLink>
       <RouterLink v-if="!state" class="p-5" to="/login">Login</RouterLink>
       <RouterLink v-if="!state" class="p-5" to="/signup">Sign Up</RouterLink>
     </nav>

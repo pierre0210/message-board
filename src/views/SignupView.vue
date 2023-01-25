@@ -28,23 +28,31 @@ const submitRegistration = async () => {
 
 <template>
   <NavBar />
-  <form @submit.prevent="submitRegistration" class="p-2">
-    <label>User name: </label>
-    <input
-      type="text"
-      v-model="username"
-      class="border-black border-2 rounded my-1"
-    />
-    <label class="ml-1">Password: </label>
-    <input
-      type="password"
-      v-model="password"
-      autocomplete="on"
-      class="border-black border-2 rounded my-1"
-    />
-    <button type="submit" class="ml-1 px-1 rounded border-black border-2">
-      Sign up
-    </button>
-    <p>{{ message }}</p>
+  <form
+    @submit.prevent="submitRegistration"
+    class="flex justify-center items-center"
+  >
+    <div class="block">
+      <label>User name </label><br />
+      <input
+        type="text"
+        v-model="username"
+        class="border-black border-2 rounded my-1 p-1"
+      />
+      <br />
+      <label>Password </label><br />
+      <input
+        type="password"
+        v-model="password"
+        autocomplete="on"
+        class="border-black border-2 rounded my-1 p-1"
+      />
+      <br />
+      <br />
+      <button type="submit" class="px-1 rounded border-black border-2">
+        Sign up
+      </button>
+      <p class="mt-1 text-red-900">{{ message }}</p>
+    </div>
   </form>
 </template>

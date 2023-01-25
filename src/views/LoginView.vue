@@ -30,7 +30,7 @@ const submitLogin = async () => {
       <input
         type="text"
         v-model="username"
-        class="border-black border-2 rounded my-1"
+        class="border-black border-2 rounded my-1 p-1"
       />
       <br />
       <label>Password </label><br />
@@ -38,14 +38,14 @@ const submitLogin = async () => {
         type="password"
         v-model="password"
         autocomplete="on"
-        class="border-black border-2 rounded my-1"
+        class="border-black border-2 rounded my-1 p-1"
       />
       <br />
       <br />
       <button type="submit" class="px-1 rounded border-black border-2">
         Login
       </button>
+      <p class="mt-1 text-red-900">{{ message }}</p>
     </div>
   </form>
-  <p class="ml-1">{{ message }}</p>
 </template>
