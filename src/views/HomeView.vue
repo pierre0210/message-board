@@ -23,9 +23,8 @@ onBeforeMount(async () => {
       state.value = true;
       comments.value = response.data.data;
     } catch (err) {
-      const statusCode = err.response.status;
-      console.log(err);
-      console.log(statusCode);
+      localStorage.removeItem("accessToken");
+      console.log(err.response.data);
     }
   }
 });
