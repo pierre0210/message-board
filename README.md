@@ -33,13 +33,15 @@ pnpm run lint
 ```
 
 ## Todo
-- [ ] API (express)
+- [x] API (express)
   - [x] JWT
-  - [ ] Comment api
+  - [x] Comment api
     - [x] Post comment
     - [x] Get single comment
-    - [ ] Delete comment
-    - [ ] Get comments in id range
+    - [x] Delete comment
+    - [x] Get comments in row range
   - [x] SQLite (sequelize)
-- [ ] Website design
+- [ ] Front-end (vue)
+  - [ ] Pagination
+  - [ ] Website design
 - [ ] ~~Pen test~~
