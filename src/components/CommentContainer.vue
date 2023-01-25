@@ -26,12 +26,12 @@ const deleteComment = async () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      window.location.reload();
     } catch (err) {
       localStorage.removeItem("accessToken");
       console.log(err.response.data);
     }
   }
+  window.location.reload();
 };
 </script>
 
