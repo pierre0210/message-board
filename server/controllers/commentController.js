@@ -82,7 +82,7 @@ export const getCommentsInRange = async (req, res) => {
     const resultComments = await Comment.findAll({
       offset: range[0] - 1,
       limit: range[1] - range[0],
-      order: [["comment_id", "DESC"]],
+      order: [["createdAt", "DESC"]],
     });
     res.send({
       message: "Comments found.",
@@ -91,6 +91,22 @@ export const getCommentsInRange = async (req, res) => {
     });
   } catch (err) {
     console.log(err);
+    res.status(500).send({ message: err });
+  }
+};
+
+/**
+ * Get comment count function
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ */
+export const getCommentCount = async (req, res) => {
+  try {
+    const database = await db();
+    const Comment = database.models.Comment;
+    const count = await Comment.count();
+    res.send({ message: "Counted.", data: count });
+  } catch (err) {
     res.status(500).send({ message: err });
   }
 };
