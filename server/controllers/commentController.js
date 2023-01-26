@@ -140,3 +140,35 @@ export const deleteComment = async (req, res) => {
     res.status(500).send({ message: err });
   }
 };
+
+/**
+ * Edit comment function
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ */
+export const editComment = async (req, res) => {
+  try {
+    const username = req.userData.username;
+    const commentId = req.params.id;
+    const updateContent = req.body.content;
+    const database = await db();
+    const Comment = database.models.Comment;
+    const targetComment = await Comment.findOne({
+      where: { comment_id: commentId },
+    });
+    if (!targetComment) {
+      res.status(404).send({ message: "Comment not found." });
+    } else if (targetComment.user_name != username) {
+      res.status(403).send({ message: "Forbidden." });
+    } else {
+      targetComment.set({
+        content: updateContent,
+      });
+      await targetComment.save();
+      res.send({ message: "Content updated successfully." });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ message: err });
+  }
+};
