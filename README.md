@@ -41,9 +41,11 @@ pnpm run lint
     - [x] Delete comment
     - [x] Get comments in row range
     - [x] Edit comment
+    - [ ] Reply comment
   - [x] SQLite (sequelize)
 - [ ] Front-end (vue)
   - [x] Pagination
   - [ ] Edit button
   - [ ] Website design
+  - [ ] Reply comment
 - [ ] ~~Pen test~~
