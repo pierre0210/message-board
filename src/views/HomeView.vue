@@ -73,7 +73,7 @@ const toNextPage = () => {
   <div class="p-2">
     <p v-if="!state">Home page</p>
     <div v-if="state">
-      <div v-for="comment in comments" :key="comment" class="p-5">
+      <div v-for="comment in comments" :key="comment">
         <CommentContainer
           :commentId="comment.comment_id"
           :content="comment.content"

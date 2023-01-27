@@ -36,14 +36,18 @@ const deleteComment = async () => {
 </script>
 
 <template>
-  <p class="text-xs">{{ timestamp.replace("T", " ").split(".")[0] }}</p>
-  <p class="text-xl pb-2">{{ content }}</p>
-  <p class="text-xs">Author: {{ author }}</p>
-  <button
-    v-if="isAuthor"
-    @click="deleteComment"
-    class="text-xs font-semibold rounded border-black border-2 p-0.5"
-  >
-    delete
-  </button>
+  <div class="p-2 m-2 bg-gray-300 rounded w-fit">
+    <p class="text-xs">
+      {{ new Date(timestamp).toLocaleString() }} No.{{ commentId }}
+    </p>
+    <p class="text-xl pb-2">{{ content }}</p>
+    <p class="text-xs">Author: {{ author }}</p>
+    <button
+      v-if="isAuthor"
+      @click="deleteComment"
+      class="text-xs font-semibold rounded border-black border-2 p-0.5"
+    >
+      delete
+    </button>
+  </div>
 </template>
