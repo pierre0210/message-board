@@ -1,5 +1,7 @@
-import db from "../models/index.js";
+import models from "../models/index.js";
 //import { Op } from "sequelize";
+
+const Comment = models.comment;
 
 /**
  * Post comment function
@@ -15,8 +17,6 @@ export const postComment = async (req, res) => {
       return;
     }
     const replyId = req.body.replyId || null;
-    const database = await db();
-    const Comment = database.models.Comment;
     const lastestComment = (await Comment.max("comment_id")) || 0;
     await Comment.create({
       comment_id: lastestComment.comment_id + 1,
@@ -40,8 +40,6 @@ export const getComment = async (req, res) => {
   try {
     const userData = req.userData;
     const commentId = req.params.id;
-    const database = await db();
-    const Comment = database.models.Comment;
     const resultComment = await Comment.findOne({
       where: { comment_id: commentId },
     });
@@ -77,8 +75,6 @@ export const getCommentsInRange = async (req, res) => {
       res.status(400).send({ message: "Wrong index data type" });
       return;
     }
-    const database = await db();
-    const Comment = database.models.Comment;
     const resultComments = await Comment.findAll({
       offset: range[0] - 1,
       limit: range[1] - range[0],
@@ -102,8 +98,6 @@ export const getCommentsInRange = async (req, res) => {
  */
 export const getCommentCount = async (req, res) => {
   try {
-    const database = await db();
-    const Comment = database.models.Comment;
     const count = await Comment.count();
     res.send({ message: "Counted.", data: count });
   } catch (err) {
@@ -120,8 +114,6 @@ export const deleteComment = async (req, res) => {
   try {
     const username = req.userData.username;
     const commentId = req.params.id;
-    const database = await db();
-    const Comment = database.models.Comment;
     const targetComment = await Comment.findOne({
       where: { comment_id: commentId },
     });
@@ -151,8 +143,6 @@ export const editComment = async (req, res) => {
     const username = req.userData.username;
     const commentId = req.params.id;
     const updateContent = req.body.content;
-    const database = await db();
-    const Comment = database.models.Comment;
     const targetComment = await Comment.findOne({
       where: { comment_id: commentId },
     });

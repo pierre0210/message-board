@@ -11,9 +11,9 @@ const sequelize = new Sequelize({
   logging: false,
 });
 
-export default async () => {
-  await user(sequelize).sync();
-  await comment(sequelize).sync();
+const models = {};
+models.sequelize = sequelize;
+models.user = user(sequelize);
+models.comment = comment(sequelize);
 
-  return sequelize;
-};
+export default models;

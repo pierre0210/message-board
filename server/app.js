@@ -4,8 +4,12 @@ import * as dotenv from "dotenv";
 
 import commentRouter from "./routes/commentRoute.js";
 import authRouter from "./routes/authRoute.js";
+import models from "./models/index.js";
 
 dotenv.config();
+models.sequelize.sync().then(() => {
+  console.log("synced database.");
+});
 
 const app = express();
 const port = parseInt(process.env.PORT) || 3001;

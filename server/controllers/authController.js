@@ -1,9 +1,10 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
-import db from "../models/index.js";
+import models from "../models/index.js";
 
 dotenv.config();
+const User = models.user;
 
 /**
  * Sign in function
@@ -12,8 +13,6 @@ dotenv.config();
  */
 export const signIn = async (req, res) => {
   try {
-    const database = await db();
-    const User = database.models.User;
     const userFound = await User.findOne({
       where: { user_name: req.body.username },
     });
@@ -40,8 +39,6 @@ export const signIn = async (req, res) => {
  */
 export const signUp = async (req, res) => {
   try {
-    const database = await db();
-    const User = database.models.User;
     await User.create({
       user_name: req.body.username,
       password: bcrypt.hashSync(req.body.password),
