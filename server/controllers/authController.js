@@ -19,7 +19,7 @@ export const signIn = async (req, res) => {
     if (!userFound) {
       res.status(401).send({ message: "Wrong user name or password!" });
     } else {
-      const isMatch = bcrypt.compareSync(req.body.password, userFound.password);
+      const isMatch = await bcrypt.compare(req.body.password, userFound.password);
       if (isMatch) {
         const token = jwt.sign({ username: req.body.username }, process.env.JWTSECRET, { expiresIn: "12h" });
         res.send({ message: "Sign in successfully", accessToken: token });
