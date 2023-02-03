@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import * as dotenv from "dotenv";
+import dotenv from "dotenv";
 
 import commentRouter from "./routes/commentRoute.js";
 import authRouter from "./routes/authRoute.js";

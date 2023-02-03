@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import * as dotenv from "dotenv";
+import dotenv from "dotenv";
 import user from "./user.js";
 import comment from "./comment.js";
 
