@@ -45,7 +45,7 @@ pnpm run lint
   - [x] SQLite (sequelize)
 - [ ] Front-end (vue)
   - [x] Pagination
-  - [ ] Edit button
+  - [x] Edit button
   - [ ] Website design
   - [ ] Reply comment
 - [ ] ~~Pen test~~
