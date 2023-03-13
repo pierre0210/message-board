@@ -25,23 +25,20 @@ const submitLogin = async () => {
 <template>
   <NavBar />
   <form @submit.prevent="submitLogin" class="flex justify-center items-center">
-    <div class="block">
-      <label>User name </label><br />
+    <div class="grid">
+      <label>User name </label>
       <input
         type="text"
         v-model="username"
         class="border-black border-2 rounded my-1 p-1"
       />
-      <br />
-      <label>Password </label><br />
+      <label>Password </label>
       <input
         type="password"
         v-model="password"
         autocomplete="on"
-        class="border-black border-2 rounded my-1 p-1"
+        class="border-black border-2 rounded my-1 p-1 mb-8"
       />
-      <br />
-      <br />
       <button type="submit" class="px-1 rounded border-black border-2">
         Login
       </button>

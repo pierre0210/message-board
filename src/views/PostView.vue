@@ -33,15 +33,13 @@ const submitComment = async () => {
     @submit.prevent="submitComment"
     class="flex justify-center items-center"
   >
-    <div class="block">
+    <div class="block w-1/3 h-[calc(100vh*2/3)]">
       <label>Content</label><br />
       <textarea
         placeholder="comment here"
         v-model="content"
-        class="border-black border-2 rounded my-1 p-1"
+        class="border-black border-2 rounded my-1 p-1 w-full h-2/3 mb-8"
       />
-      <br />
-      <br />
       <button type="submit" class="px-1 rounded border-black border-2">
         Submit
       </button>
