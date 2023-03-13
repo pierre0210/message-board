@@ -43,7 +43,7 @@ export const signUp = async (req, res) => {
       user_name: req.body.username,
       password: bcrypt.hashSync(req.body.password),
     });
-    res.send("User was created successfully");
+    res.send({ message: "User was created successfully" });
   } catch (err) {
     res.status(500).send({ message: err });
   }

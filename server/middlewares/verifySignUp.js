@@ -1,4 +1,6 @@
-import db from "../models/index.js";
+import models from "../models/index.js";
+
+const User = models.user;
 
 /**
  * @param {import("express").Request} req
@@ -11,8 +13,6 @@ export default async (req, res, next) => {
     return;
   }
   try {
-    const database = await db();
-    const User = database.models.User;
     const userFound = await User.findOne({
       where: { user_name: req.body.username },
     });
@@ -21,6 +21,7 @@ export default async (req, res, next) => {
       return;
     }
   } catch (err) {
+    console.log(err);
     res.status(500).send({ message: err });
     return;
   }
